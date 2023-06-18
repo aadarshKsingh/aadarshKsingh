@@ -22,7 +22,7 @@ function SinglePost(){
         return <div className="items-center w-full h-screen text-white flex flex-col py-48 font-extrabold">Loading Post...</div>
 
 
-    return <main className="items-center relative py-10 px-48 mx-10 grid">
+    return <main className="items-center relative py-10 mx-10 grid">
         <article className="card rounded-xl p-5 shadow-lg bg-white">
             <div>
                 <div className="font-bold text-3xl">{singlePost.title}</div>

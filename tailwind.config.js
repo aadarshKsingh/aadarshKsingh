@@ -10,7 +10,11 @@ module.exports = {
         'profile-fg': '#E9F1F7'
       },
     },
+    fontFamily:{
+      urbanist: ["Urbanist"],
+    }
   },
+  
   plugins: [
     // require('@tailwindcss/line-clamp'),
   ],

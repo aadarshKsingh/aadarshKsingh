@@ -5,7 +5,9 @@
 a{
   @apply no-underline text-red-600;
 }
-
+*{
+  font-family: 'urbanist';
+}
 
 .App-header {
   background-color: #282c34;
