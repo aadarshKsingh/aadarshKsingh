@@ -5,7 +5,7 @@ function Navigation() {
   return (
     <nav>
       <div className="card pt-10 pb-10 rounded-none">
-        <ul className="border-red-600 border-2 my-0 md:flex md:flex-col md:absolute mx-auto lg:relative lg:block z-20 w-fit text-center rounded-md py-1 px-10 overflow-hidden">
+        <ul className="border-red-600 border-2 my-0  mx-auto relative z-50 w-fit text-center rounded-md py-1 px-10 overflow-hidden">
           <li className="navBarLi">
             <NavLink to="/">About</NavLink>
           </li>
