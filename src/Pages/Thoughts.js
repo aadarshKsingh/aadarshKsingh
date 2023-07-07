@@ -9,7 +9,7 @@ function Thoughts() {
       .fetch(
         `*[_type=='Thought']{
           title,
-          body,
+        
           slug,
           postedOn,
     }`

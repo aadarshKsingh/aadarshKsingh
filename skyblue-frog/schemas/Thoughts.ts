@@ -6,7 +6,7 @@ export default {
     {
       title: 'Title',
       name: 'title',
-      type: 'text',
+      type: 'string',
     },
     {
       title: 'Slug',
@@ -23,19 +23,19 @@ export default {
       type: 'url',
     },
     {
-      title: 'Image',
-      name: 'image',
-      type: 'image'
-    },
-    {
-      title: 'Posted On',
-      name: 'postedOn',
-      type: 'date',
-    },
-    {
       title: 'Body',
       name: 'body',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type:'image',
+          name:'image'
+        },
+        {
+          type:'block',
+          name:'block'
+        }
+      ]
     },
   ],
 }
