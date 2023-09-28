@@ -2,45 +2,49 @@ import React, { useState, useEffect } from "react";
 import sanityClient from "../Sanity/client";
 import { useParams } from "react-router-dom";
 import imageUrlBuilder from "@sanity/image-url";
-// import { PortableText } from "@portabletext/react";
+import {PortableText,defaultComponents} from "@portabletext/react";
+// import { serializers } from "@sanity/block-content-to-react/lib/targets/dom";
 // import BlockContent from "@sanity/block-content-to-react";
 function SinglePost() {
   const [singlePost, setSinglePost] = useState(null);
   const { slug } = useParams();
-
-  // const components = {
-  //   types: {
-  //     // Define your custom components for each block type here
-  //     // For example:
-  //     paragraph: (props) => <p>{props}</p>,
-  //     heading: (props) => <h2>{props}</h2>,
-
-  //     // Fallback component for undefined types
-  //     undefined: ({ children, index }) => (
-  //       <div>
-  //         <p key={index}>{children[index]}</p>
-  //       </div>
-  //     ),
-  //     block: (children, index) => <p key={index}>{children[index]}</p>,
-  //     span: (children, index) => <span key={index}>{children[index]}</span>,
-  //   },
-  // };
+  
   const builder = imageUrlBuilder(sanityClient);
   function urlFor(source) {
     return builder.image(source);
   }
 
+  const components = {
+    types:{
+      block:{
+        h1: ({children}) => <h1 className="text-2xl">{children}</h1>,
+        strong: ({children})=><strong className="text-2xl">{children}</strong>,
+        span: ({children}) => <span className="text-2xl">{children}</span>
+      },
+      Object:{
+        h1: ({children}) => <h1 className="text-2xl">{children}</h1>,
+        strong: ({children})=><strong className="text-2xl">{children}</strong>,
+        span: ({children}) => <span className="text-2xl">{children}</span>
+      },
+      array:{
+       
+        h1: ({children}) => <h1 className="text-2xl">{children}</h1>,
+      
+      },
+      span:{
+        span: ({children}) => <span className="text-2xl">{children}</span>
+      }
+  }
+}
   useEffect(() => {
     sanityClient
       .fetch(
         `*[slug.current == "${slug}"] {
           title,
-          "text": body[].children[].text,
-          "body": body[_type == "image"] {
-            "url": asset->url
-          },
-         
+          body,
+          link,
         }`
+      
       )
       .then((data) => {
         return setSinglePost(data[0]);
@@ -54,7 +58,10 @@ function SinglePost() {
         Loading Post...
       </div>
     );
-
+    function blocksToText(blocks) {
+      return blocks
+        .map(block => block.children.map(child => child.text).join(''))
+    }
   return (
     <main className="items-center relative py-10 mx-10 grid">
       <article className="card rounded-xl p-5 shadow-lg bg-white">
@@ -62,7 +69,7 @@ function SinglePost() {
           <div className="font-bold text-3xl">{singlePost.title}</div>
           <div className="pb-5 text-sm">Posted on {singlePost.postedOn}</div>
           <div>
-            {singlePost.body[0] !== undefined ? (
+            {/* {singlePost.body[0] !== undefined ? (
               <img
                 src={urlFor(singlePost.body).url()}
                 className="sm:h-24 md:h-48 lg:h-64 my-5"
@@ -70,17 +77,17 @@ function SinglePost() {
               />
             ) : (
               <></>
-            )}
+            )} */}
           </div>
           <div>
-            {singlePost.text.map((block) => (
-              <div key={block[0]}>{block}</div>
-            ))}
-            {/* <PortableText
-              values={singlePost.text[0]}
-              components={components}
-              ignoreUnknownTypes={true}
-            /> */}
+            {console.log(singlePost.body)}
+            {JSON.stringify(singlePost.body)}
+          <PortableText
+          value={Object.values(singlePost.body)}
+          components={components}
+          onMissingComponent={false}
+          />
+          
           </div>
         </div>
       </article>

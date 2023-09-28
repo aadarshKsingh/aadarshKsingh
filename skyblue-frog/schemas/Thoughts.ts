@@ -14,7 +14,7 @@ export default {
       type: 'slug',
       options: {
         source: 'title',
-        maxlength: 96,
+        maxLength: 96,
       },
     },
     {
@@ -25,17 +25,12 @@ export default {
     {
       title: 'Body',
       name: 'body',
-      type: 'array',
+      type: 'object',
       of: [
         {
-          type:'image',
-          name:'image'
+          type: 'block',
         },
-        {
-          type:'block',
-          name:'block'
-        }
-      ]
+      ],
     },
   ],
-}
+};

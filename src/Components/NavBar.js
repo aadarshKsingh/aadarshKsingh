@@ -9,16 +9,17 @@ function Navigation() {
           <li className="navBarLi">
             <NavLink to="/">About</NavLink>
           </li>
+          
+          <Pseudonym />
           <li  className="navBarLi">
             <NavLink to="/Socials">Socials</NavLink>
           </li>
-          <Pseudonym />
-          <li className="navBarLi">
+          {/* <li className="navBarLi">
             <NavLink to="/Thoughts">Thoughts</NavLink>
           </li>
           <li className="navBarLi">
             <NavLink to="/Dump">Dump</NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
