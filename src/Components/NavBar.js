@@ -14,12 +14,6 @@ function Navigation() {
           <li  className="navBarLi">
             <NavLink to="/Socials">Socials</NavLink>
           </li>
-          {/* <li className="navBarLi">
-            <NavLink to="/Thoughts">Thoughts</NavLink>
-          </li>
-          <li className="navBarLi">
-            <NavLink to="/Dump">Dump</NavLink>
-          </li> */}
         </ul>
       </div>
     </nav>
